@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:pages="clr-namespace:WhatIsNewQuestionMark.Pages"
+             xmlns:ga="clr-namespace:WhatIsNewQuestionMark.Pages.GenericAttributes"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WhatIsNewQuestionMark.Pages.GenericAttributesPage"
+             x:DataType="pages:GenericAttributesPage"
+             Title="Generic Attributes">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ga:SpecialConverter x:Key="Specializer" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout Padding="20" Spacing="20">
+
+        <Picker
+            ItemsSource="{Binding AllItems}"
+            SelectedItem="{Binding PotentiallySpecial}"
+            WidthRequest="250" />
+
+        <Label Text="{Binding PotentiallySpecial, 
+                              Converter={StaticResource Specializer}}"
+               WidthRequest="250" />
+
+    </VerticalStackLayout>
+
+</ContentPage>

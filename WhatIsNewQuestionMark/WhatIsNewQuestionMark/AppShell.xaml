@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="WhatIsNewQuestionMark.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:WhatIsNewQuestionMark"
+    xmlns:pages="clr-namespace:WhatIsNewQuestionMark.Pages">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate pages:MainPage}"
+        Route="Main" />
+
+    <ShellContent
+        Title="Generic Attributes"
+        ContentTemplate="{DataTemplate pages:GenericAttributesPage}"
+        Route="GenericAttributes" />
+
+</Shell>
