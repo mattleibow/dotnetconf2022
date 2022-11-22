@@ -6,6 +6,7 @@ public interface IAttendee
 
     string LastName { get; }
 
+    // public static virtual IAttendee Parse(string fullname);
     // public static virtual IAttendee operator +(IAttendee bride, IAttendee groom);
-    // public static abstract IAttendee operator *(IAttendee mother, string babyName);
+    // public static virtual IAttendee operator *(IAttendee mother, string babyName);
 }

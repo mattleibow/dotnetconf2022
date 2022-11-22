@@ -42,8 +42,16 @@
             <Entry
                 x:Name="newAttendeeEntry" />
             <Button
-                Text="Add Attendee"
+                Text="Add General Attendee"
                 Command="{Binding AddAttendeeCommand}"
+                CommandParameter="{Binding Text, Source={Reference newAttendeeEntry}}" />
+            <Button
+                Text="Add Indonesian Attendee"
+                Command="{Binding AddIndonesianAttendeeCommand}"
+                CommandParameter="{Binding Text, Source={Reference newAttendeeEntry}}" />
+            <Button
+                Text="Add Western Attendee"
+                Command="{Binding AddWesternAttendeeCommand}"
                 CommandParameter="{Binding Text, Source={Reference newAttendeeEntry}}" />
 
             <!-- perform a marriage -->

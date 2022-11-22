@@ -13,6 +13,8 @@ public partial class StaticInterfaceMembersPage : ContentPage
         InitializeComponent();
 
         AddAttendeeCommand = new(OnAddAttendee);
+        AddIndonesianAttendeeCommand = new(OnAddIndonesianAttendee);
+        AddWesternAttendeeCommand = new(OnAddWesternAttendee);
         PerformCeremonyCommand = new(OnPerformCeremony);
         StartFamilyCommand = new(OnStartFamily);
 
@@ -33,6 +35,38 @@ public partial class StaticInterfaceMembersPage : ContentPage
         {
             // var attendee = IAttendee.Parse(fullname);
             var attendee = AttendeeUtils.Parse(fullname);
+            Register.Add(attendee);
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "OK");
+        }
+    }
+
+    public Command<string> AddIndonesianAttendeeCommand { get; }
+
+    private async void OnAddIndonesianAttendee(string fullname)
+    {
+        try
+        {
+            // var attendee = IndonesianAttendee.Parse(fullname);
+            var attendee = IndonesianAttendee.FromLongName(fullname);
+            Register.Add(attendee);
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "OK");
+        }
+    }
+
+    public Command<string> AddWesternAttendeeCommand { get; }
+
+    private async void OnAddWesternAttendee(string fullname)
+    {
+        try
+        {
+            // var attendee = WesternAttendee.Parse(fullname);
+            var attendee = WesternAttendee.FromFullName(fullname);
             Register.Add(attendee);
         }
         catch (Exception ex)
@@ -73,7 +107,10 @@ public partial class StaticInterfaceMembersPage : ContentPage
             _ = SelectedBride ?? throw new InvalidOperationException("A marriage requires a bride of some sort!");
 
             // var wife = SelectedBride + SelectedGroom;
-            var wife = AttendeeUtils.Add(SelectedBride, SelectedGroom);
+            var wife = AttendeeUtils.Add(
+                SelectedBride,
+                SelectedGroom,
+                SelectedBride is WesternAttendee);
 
             Register.Remove(SelectedBride);
             Register.Add(wife);
@@ -108,7 +145,10 @@ public partial class StaticInterfaceMembersPage : ContentPage
             _ = SelectedParent ?? throw new InvalidOperationException("A new baby requires a parent of some sort!");
 
             // var baby = SelectedParent * babyName;
-            var baby = AttendeeUtils.Multiply(SelectedParent, babyName);
+            var baby = AttendeeUtils.Multiply(
+                SelectedParent,
+                babyName,
+                SelectedParent is WesternAttendee);
 
             Register.Add(baby);
         }

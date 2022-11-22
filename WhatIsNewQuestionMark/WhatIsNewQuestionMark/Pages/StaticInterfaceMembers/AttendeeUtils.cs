@@ -11,18 +11,22 @@ static class AttendeeUtils
         var first = names[0];
         var last = names[1];
 
-        return new ReadOnlyAttendee(first, last);
+        return new InternalOnlyAttendee(first, last);
     }
 
-    public static IAttendee Add(IAttendee bride, IAttendee groom)
+    public static IAttendee Add(IAttendee bride, IAttendee groom, bool isWestern)
     {
-        var lastName = $"{groom.LastName}-{bride.LastName}";
-        return new ReadOnlyAttendee(bride.FirstName, lastName);
+        var lastName = isWestern
+            ? groom.LastName
+            : $"{groom.LastName}-{bride.LastName}";
+        return new InternalOnlyAttendee(bride.FirstName, lastName);
     }
 
-    public static IAttendee Multiply(IAttendee mother, string babyName)
+    public static IAttendee Multiply(IAttendee mother, string babyName, bool isWestern)
     {
-        var lastNames = mother.LastName.Split("-");
-        return new ReadOnlyAttendee(babyName, lastNames[0]);
+        var lastName = isWestern
+            ? mother.LastName
+            : mother.LastName.Split("-")[0];
+        return new InternalOnlyAttendee(babyName, lastName);
     }
 }

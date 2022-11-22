@@ -1,8 +1,8 @@
 ﻿namespace WhatIsNewQuestionMark.Pages;
 
-class ReadOnlyAttendee : IAttendee
+internal class InternalOnlyAttendee : IAttendee
 {
-    public ReadOnlyAttendee(string first, string last)
+    public InternalOnlyAttendee(string first, string last)
     {
         FirstName = first;
         LastName = last;
