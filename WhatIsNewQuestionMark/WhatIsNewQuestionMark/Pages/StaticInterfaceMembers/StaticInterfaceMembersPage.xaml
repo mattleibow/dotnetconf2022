@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:pages="clr-namespace:WhatIsNewQuestionMark.Pages"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WhatIsNewQuestionMark.Pages.StaticInterfaceMembersPage"
+             x:DataType="pages:StaticInterfaceMembersPage"
+             Title="Static Interface Things">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="40,20,20,20" Spacing="20">
+
+            <!-- list of attendees -->
+            <Label
+                Text="Current attendee list"
+                FontAttributes="Bold"
+                Margin="-20,0,0,0" />
+
+            <Label
+                Text="{Binding Register.Count, 
+                               StringFormat='Total Attendees: {0}'}"
+                FontAttributes="Italic" />
+            <CollectionView
+                ItemsSource="{Binding Register}"
+                HeightRequest="200"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="pages:IAttendee">
+                        <HorizontalStackLayout Spacing="5" Padding="10,0">
+                            <Label Text="{Binding FirstName}" />
+                            <Label Text="{Binding LastName}" />
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- add a new attendee -->
+            <Label
+                Text="Add a new attendee"
+                FontAttributes="Bold"
+                Margin="-20,0,0,0" />
+
+            <Entry
+                x:Name="newAttendeeEntry" />
+            <Button
+                Text="Add Attendee"
+                Command="{Binding AddAttendeeCommand}"
+                CommandParameter="{Binding Text, Source={Reference newAttendeeEntry}}" />
+
+            <!-- perform a marriage -->
+            <Label
+                Text="Perform a marriage"
+                FontAttributes="Bold"
+                Margin="-20,0,0,0" />
+
+            <Label Text="Groom:" />
+            <Picker
+                ItemsSource="{Binding Register}"
+                SelectedItem="{Binding SelectedGroom}"
+                ItemDisplayBinding="{Binding FirstName}" />
+            <Label Text="Bride:" />
+            <Picker
+                ItemsSource="{Binding Register}"
+                SelectedItem="{Binding SelectedBride}"
+                ItemDisplayBinding="{Binding FirstName}" />
+            <Button
+                Text="Perform Ceremony"
+                Command="{Binding PerformCeremonyCommand}" />
+
+
+            <!-- start a family -->
+            <Label
+                Text="Start a family"
+                FontAttributes="Bold"
+                Margin="-20,0,0,0" />
+
+            <Label Text="Parent:" />
+            <Picker
+                ItemsSource="{Binding Register}"
+                SelectedItem="{Binding SelectedParent}"
+                ItemDisplayBinding="{Binding FirstName}" />
+            <Label Text="Baby Name:" />
+            <Entry
+                x:Name="babyNameEntry" />
+            <Button
+                Text="Start a Family"
+                Command="{Binding StartFamilyCommand}"
+                CommandParameter="{Binding Text, Source={Reference babyNameEntry}}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

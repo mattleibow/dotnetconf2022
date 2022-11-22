@@ -16,4 +16,9 @@
         ContentTemplate="{DataTemplate pages:GenericAttributesPage}"
         Route="GenericAttributes" />
 
+    <ShellContent
+        Title="Static Interface Things"
+        ContentTemplate="{DataTemplate pages:StaticInterfaceMembersPage}"
+        Route="Statics" />
+
 </Shell>

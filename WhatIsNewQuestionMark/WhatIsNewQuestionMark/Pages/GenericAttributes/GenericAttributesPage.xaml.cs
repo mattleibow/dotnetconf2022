@@ -4,7 +4,7 @@ namespace WhatIsNewQuestionMark.Pages;
 
 public partial class GenericAttributesPage : ContentPage
 {
-    private object potentiallySpecial;
+    private object? potentiallySpecial;
 
     public GenericAttributesPage()
     {
@@ -13,7 +13,7 @@ public partial class GenericAttributesPage : ContentPage
         BindingContext = this;
     }
 
-    public object PotentiallySpecial
+    public object? PotentiallySpecial
     {
         get => potentiallySpecial;
         set
