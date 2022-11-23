@@ -4,15 +4,17 @@ namespace WhatIsNewQuestionMark.Pages;
 
 //public class TextileFactoryFloor<TLength>
 //    where TLength : ITextileLength<TLength>
-public class ThreadTextileFactoryFloor : TextileFactoryFloor<ThreadLength>
+public class TextileFactoryFloor
 {
-    public override void ManufactureLength(string length)
+    public ObservableCollection<ThreadLength> LengthsOnSite { get; } = new();
+
+    public void ManufactureLength(string length)
     {
         var newLength = ThreadLength.Parse(length);
         LengthsOnSite.Add(newLength);
     }
 
-    public override ThreadLength MeasureTotalLength()
+    public ThreadLength MeasureTotalLength()
     {
         var totalLength = ThreadLength.Zero;
         foreach (var length in LengthsOnSite)
@@ -21,16 +23,4 @@ public class ThreadTextileFactoryFloor : TextileFactoryFloor<ThreadLength>
         }
         return totalLength;
     }
-}
-
-
-
-public abstract class TextileFactoryFloor<TLength>
-    where TLength : ITextileLength
-{
-    public ObservableCollection<TLength> LengthsOnSite { get; } = new();
-
-    public abstract void ManufactureLength(string length);
-
-    public abstract TLength MeasureTotalLength();
 }

@@ -12,7 +12,7 @@ public partial class StaticInterfaceMembersPage : ContentPage
         BindingContext = this;
     }
 
-    public ThreadTextileFactoryFloor Factory { get; } = new();
+    public TextileFactoryFloor Factory { get; } = new();
 
     public Command<string> AddLengthCommand { get; }
 
