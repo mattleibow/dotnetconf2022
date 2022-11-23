@@ -15,9 +15,6 @@ public class ThreadLength : ITextileLength
 
     public static ThreadLength Zero => new(0);
 
-    public static ThreadLength Longest(ThreadLength a, ThreadLength b) =>
-        a.length > b.length ? a : b;
-
     public static ThreadLength Parse(string s) =>
         new(int.Parse(s));
 
