@@ -6,94 +6,29 @@
              x:DataType="pages:StaticInterfaceMembersPage"
              Title="Static Interface Things">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="40,20,20,20" Spacing="20">
+    <VerticalStackLayout Padding="20" Spacing="20">
 
-            <!-- list of attendees -->
-            <Label
-                Text="Current attendee list"
-                FontAttributes="Bold"
-                Margin="-20,0,0,0" />
+        <CollectionView
+            x:Name="lengthsList"
+            ItemsSource="{Binding Factory.LengthsOnSite}"
+            SelectionMode="Multiple"
+            HeightRequest="200" />
 
-            <Label
-                Text="{Binding Register.Count, 
-                               StringFormat='Total Attendees: {0}'}"
-                FontAttributes="Italic" />
-            <CollectionView
-                ItemsSource="{Binding Register}"
-                HeightRequest="200"
-                SelectionMode="Single">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="pages:IAttendee">
-                        <HorizontalStackLayout Spacing="5" Padding="10,0">
-                            <Label Text="{Binding FirstName}" />
-                            <Label Text="{Binding LastName}" />
-                        </HorizontalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+        <Entry x:Name="lengthEntry" />
 
-            <!-- add a new attendee -->
-            <Label
-                Text="Add a new attendee"
-                FontAttributes="Bold"
-                Margin="-20,0,0,0" />
+        <Button
+            Text="Add New Length"
+            Command="{Binding AddLengthCommand}"
+            CommandParameter="{Binding Text, Source={Reference lengthEntry}}" />
 
-            <Entry
-                x:Name="newAttendeeEntry" />
-            <Button
-                Text="Add General Attendee"
-                Command="{Binding AddAttendeeCommand}"
-                CommandParameter="{Binding Text, Source={Reference newAttendeeEntry}}" />
-            <Button
-                Text="Add Indonesian Attendee"
-                Command="{Binding AddIndonesianAttendeeCommand}"
-                CommandParameter="{Binding Text, Source={Reference newAttendeeEntry}}" />
-            <Button
-                Text="Add Western Attendee"
-                Command="{Binding AddWesternAttendeeCommand}"
-                CommandParameter="{Binding Text, Source={Reference newAttendeeEntry}}" />
+        <Button
+            Text="Join Lengths"
+            Command="{Binding JoinLengthsCommand}"
+            CommandParameter="{Binding SelectedItems, Source={Reference lengthsList}}" />
 
-            <!-- perform a marriage -->
-            <Label
-                Text="Perform a marriage"
-                FontAttributes="Bold"
-                Margin="-20,0,0,0" />
+        <Button
+            Text="Stocktake"
+            Command="{Binding StocktakeCommand}" />
 
-            <Label Text="Groom:" />
-            <Picker
-                ItemsSource="{Binding Register}"
-                SelectedItem="{Binding SelectedGroom}"
-                ItemDisplayBinding="{Binding FirstName}" />
-            <Label Text="Bride:" />
-            <Picker
-                ItemsSource="{Binding Register}"
-                SelectedItem="{Binding SelectedBride}"
-                ItemDisplayBinding="{Binding FirstName}" />
-            <Button
-                Text="Perform Ceremony"
-                Command="{Binding PerformCeremonyCommand}" />
-
-
-            <!-- start a family -->
-            <Label
-                Text="Start a family"
-                FontAttributes="Bold"
-                Margin="-20,0,0,0" />
-
-            <Label Text="Parent:" />
-            <Picker
-                ItemsSource="{Binding Register}"
-                SelectedItem="{Binding SelectedParent}"
-                ItemDisplayBinding="{Binding FirstName}" />
-            <Label Text="Baby Name:" />
-            <Entry
-                x:Name="babyNameEntry" />
-            <Button
-                Text="Start a Family"
-                Command="{Binding StartFamilyCommand}"
-                CommandParameter="{Binding Text, Source={Reference babyNameEntry}}" />
-
-        </VerticalStackLayout>
-    </ScrollView>
+    </VerticalStackLayout>
 </ContentPage>
