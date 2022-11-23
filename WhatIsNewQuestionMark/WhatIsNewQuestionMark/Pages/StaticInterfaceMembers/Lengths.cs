@@ -1,6 +1,7 @@
 ﻿namespace WhatIsNewQuestionMark.Pages;
 
-public class ThreadLength : ITextileLength<ThreadLength>
+//public class ThreadLength : ITextileLength<ThreadLength>
+public class ThreadLength : ITextileLength
 {
     public static ThreadLength Zero => new(0);
 
@@ -26,7 +27,8 @@ public class ThreadLength : ITextileLength<ThreadLength>
 
 
 
-public class FabricLength : ITextileLength<FabricLength>
+//public class FabricLength : ITextileLength<FabricLength>
+public class FabricLength : ITextileLength
 {
     public static FabricLength Zero => new(0);
 

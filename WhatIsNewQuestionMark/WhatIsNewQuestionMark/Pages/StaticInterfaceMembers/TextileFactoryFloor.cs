@@ -2,20 +2,19 @@
 
 namespace WhatIsNewQuestionMark.Pages;
 
-public class TextileFactoryFloor<TLength>
-    where TLength : ITextileLength<TLength>
+//public class TextileFactoryFloor<TLength>
+//    where TLength : ITextileLength<TLength>
+public class ThreadTextileFactoryFloor : TextileFactoryFloor<ThreadLength>
 {
-    public ObservableCollection<TLength> LengthsOnSite { get; } = new();
-
-    public void ManufactureLength(string length)
+    public override void ManufactureLength(string length)
     {
-        var newLength = TLength.Parse(length);
+        var newLength = ThreadLength.Parse(length);
         LengthsOnSite.Add(newLength);
     }
 
-    public void JoinLengths(IEnumerable<TLength> lengths)
+    public override void JoinLengths(IEnumerable<ThreadLength> lengths)
     {
-        var newLength = TLength.Zero;
+        var newLength = ThreadLength.Zero;
         foreach (var length in lengths.ToArray())
         {
             newLength += length;
@@ -24,9 +23,9 @@ public class TextileFactoryFloor<TLength>
         LengthsOnSite.Add(newLength);
     }
 
-    public TLength MeasureTotalLength()
+    public override ThreadLength MeasureTotalLength()
     {
-        var totalLength = TLength.Zero;
+        var totalLength = ThreadLength.Zero;
         foreach (var length in LengthsOnSite)
         {
             totalLength += length;
@@ -34,13 +33,29 @@ public class TextileFactoryFloor<TLength>
         return totalLength;
     }
 
-    public TLength FindLongest()
+    public override ThreadLength FindLongest()
     {
-        var current = TLength.Zero;
+        var current = ThreadLength.Zero;
         foreach (var length in LengthsOnSite)
         {
-            current = TLength.Longest(length, current);
+            current = ThreadLength.Longest(length, current);
         }
         return current;
     }
+}
+
+
+
+public abstract class TextileFactoryFloor<TLength>
+    where TLength : ITextileLength
+{
+    public ObservableCollection<TLength> LengthsOnSite { get; } = new();
+
+    public abstract void ManufactureLength(string length);
+
+    public abstract void JoinLengths(IEnumerable<TLength> lengths);
+
+    public abstract TLength MeasureTotalLength();
+
+    public abstract TLength FindLongest();
 }
