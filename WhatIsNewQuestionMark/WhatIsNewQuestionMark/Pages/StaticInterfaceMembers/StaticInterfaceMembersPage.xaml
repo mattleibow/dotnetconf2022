@@ -22,11 +22,6 @@
             CommandParameter="{Binding Text, Source={Reference lengthEntry}}" />
 
         <Button
-            Text="Join Lengths"
-            Command="{Binding JoinLengthsCommand}"
-            CommandParameter="{Binding SelectedItems, Source={Reference lengthsList}}" />
-
-        <Button
             Text="Stocktake"
             Command="{Binding StocktakeCommand}" />
 

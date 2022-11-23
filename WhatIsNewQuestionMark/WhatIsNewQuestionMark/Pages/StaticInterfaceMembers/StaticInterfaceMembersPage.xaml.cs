@@ -7,7 +7,6 @@ public partial class StaticInterfaceMembersPage : ContentPage
         InitializeComponent();
 
         AddLengthCommand = new(OnAddLength);
-        JoinLengthsCommand = new(OnJoinLengths);
         StocktakeCommand = new(OnStocktake);
 
         BindingContext = this;
@@ -20,16 +19,11 @@ public partial class StaticInterfaceMembersPage : ContentPage
     void OnAddLength(string length) =>
         Factory.ManufactureLength(length);
 
-    public Command<IList<object>> JoinLengthsCommand { get; }
-
-    void OnJoinLengths(IList<object> lengths) =>
-        Factory.JoinLengths(lengths.OfType<ThreadLength>());
-
     public Command StocktakeCommand { get; }
 
     async void OnStocktake() =>
         await DisplayAlert(
             "Stock",
-            $"Total: {Factory.MeasureTotalLength()}. Longest: {Factory.FindLongest()}",
+            $"Total: {Factory.MeasureTotalLength()}",
             "OK");
 }

@@ -12,17 +12,6 @@ public class ThreadTextileFactoryFloor : TextileFactoryFloor<ThreadLength>
         LengthsOnSite.Add(newLength);
     }
 
-    public override void JoinLengths(IEnumerable<ThreadLength> lengths)
-    {
-        var newLength = ThreadLength.Zero;
-        foreach (var length in lengths.ToArray())
-        {
-            newLength += length;
-            LengthsOnSite.Remove(length);
-        }
-        LengthsOnSite.Add(newLength);
-    }
-
     public override ThreadLength MeasureTotalLength()
     {
         var totalLength = ThreadLength.Zero;
@@ -31,16 +20,6 @@ public class ThreadTextileFactoryFloor : TextileFactoryFloor<ThreadLength>
             totalLength += length;
         }
         return totalLength;
-    }
-
-    public override ThreadLength FindLongest()
-    {
-        var current = ThreadLength.Zero;
-        foreach (var length in LengthsOnSite)
-        {
-            current = ThreadLength.Longest(length, current);
-        }
-        return current;
     }
 }
 
@@ -53,9 +32,5 @@ public abstract class TextileFactoryFloor<TLength>
 
     public abstract void ManufactureLength(string length);
 
-    public abstract void JoinLengths(IEnumerable<TLength> lengths);
-
     public abstract TLength MeasureTotalLength();
-
-    public abstract TLength FindLongest();
 }
