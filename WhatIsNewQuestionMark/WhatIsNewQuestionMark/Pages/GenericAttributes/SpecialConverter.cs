@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Reflection;
 
-namespace WhatIsNewQuestionMark.Pages.GenericAttributes;
+namespace WhatIsNewQuestionMark.Pages;
 
 class SpecialConverter : IValueConverter
 {

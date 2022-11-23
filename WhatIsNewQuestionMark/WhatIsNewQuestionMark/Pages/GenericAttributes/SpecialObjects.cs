@@ -1,4 +1,4 @@
-﻿namespace WhatIsNewQuestionMark.Pages.GenericAttributes;
+﻿namespace WhatIsNewQuestionMark.Pages;
 
 //[Special<SuperSpecial>]
 [Special(typeof(SuperSpecial))]

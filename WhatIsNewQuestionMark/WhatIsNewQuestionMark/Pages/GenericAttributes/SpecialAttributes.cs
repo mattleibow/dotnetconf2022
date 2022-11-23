@@ -1,4 +1,4 @@
-﻿namespace WhatIsNewQuestionMark.Pages.GenericAttributes;
+﻿namespace WhatIsNewQuestionMark.Pages;
 
 //class SpecialAttribute<T> : Attribute
 //    where T : ISpecial

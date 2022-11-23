@@ -1,6 +1,4 @@
-﻿using WhatIsNewQuestionMark.Pages.GenericAttributes;
-
-namespace WhatIsNewQuestionMark.Pages;
+﻿namespace WhatIsNewQuestionMark.Pages;
 
 public partial class GenericAttributesPage : ContentPage
 {

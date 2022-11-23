@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:pages="clr-namespace:WhatIsNewQuestionMark.Pages"
-             xmlns:ga="clr-namespace:WhatIsNewQuestionMark.Pages.GenericAttributes"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WhatIsNewQuestionMark.Pages.GenericAttributesPage"
              x:DataType="pages:GenericAttributesPage"
@@ -9,7 +8,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <ga:SpecialConverter x:Key="Specializer" />
+            <pages:SpecialConverter x:Key="Specializer" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
